@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ChatGPT Extension</title>
-  <script src="popup.js"></script>
-</head>
-<body>
-  <h1>ChatGPT Extension</h1>
-  <p>Type "help" in the opened tab to get assistance.</p>
-</body>
+  <head>
+    <title>In-a-Nutshell</title>
+    <style>
+      /* Add CSS styling to the title */
+      body {
+      width: 250px;
+        height: 250px;
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        font-size: 24px;
+        color: #333;
+        margin: 0;
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+      }
+      
+      /* Add CSS styling to the button */
+      button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      
+      button:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>In-a-nutshell</h1>
+    <button id="summarize">Summarize the current tab</button>
+
+    <!-- Add your JavaScript code here -->
+    
+
+    <script src="popup.js"></script>
+  </body>
 </html>
