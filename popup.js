@@ -17,7 +17,10 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (message.text == 'help') {
-    console.log('help')
+    let responses = 'Chatgpt';
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: responses});
+    });
   }
 });
 

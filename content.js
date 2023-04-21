@@ -1,14 +1,20 @@
 console.log('test')
 
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'help' && event.ctrlKey) {
+document.addEventListener("input", function(event) {
+  if (event.target.value.startsWith('::help'))  {
+    var activevalue = document.activeElement.value;
+    console.log('Help key was pressed!');
     chrome.runtime.sendMessage({text: 'help'}, function(response) {
-
-
 
     });
   }
 });
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+  if (message.text == 'update_input') {
+    document.activeElement.value = message.value;
+  }
+});
+
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (message.text == 'get_content') {
