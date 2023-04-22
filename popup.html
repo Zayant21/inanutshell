@@ -37,12 +37,28 @@
       button:hover {
         background-color: #3e8e41;
       }
+
+      /* Add CSS styling to the checkbox */
+      label {
+        display: block;
+        margin: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      input[type="checkbox"] {
+        margin-right: 10px;
+      }
     </style>
   </head>
   <body>
     <h1>In-a-nutshell</h1>
+    <label>
+      <input type="checkbox" id="toggle" unchecked>
+      Turn on/off In-a-Nutshell
+    </label>
     <button id="summarize">Summarize the current tab</button>
-    
     
     <script src="popup.js"></script>
   </body>

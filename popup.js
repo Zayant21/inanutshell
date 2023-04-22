@@ -1,35 +1,27 @@
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  if (changeInfo.status == 'complete') {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      var activeTab = tabs[0];
-      if (activeTab && activeTab.url && activeTab.url.indexOf('http') == 0) {
-        chrome.tabs.executeScript(null, {file: 'content.js'}, function() {
-          chrome.tabs.sendMessage(activeTab.id, {text: 'get_content'}, function(response) {
-            if (response) {
-              console.log(response)
-            }
-          });
-        });
-      }
-    });
+// Get the toggle checkbox and the summarize button
+const toggle = document.getElementById("toggle");
+const summarizeBtn = document.getElementById("summarize");
+
+// Listen to the toggle checkbox onchange event
+toggle.onchange = function() {
+  if (toggle.checked) {
+    // If the checkbox is checked, enable the summarize button and save the state
+    summarizeBtn.disabled = false;
+    chrome.storage.sync.set({ enabled: true });
+    chrome.runtime.sendMessage({ enabled: true });
+  } else {
+    // If the checkbox is not checked, disable the summarize button and save the state
+    summarizeBtn.disabled = true;
+    chrome.storage.sync.set({ enabled: false });
   }
-});
+};
 
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-  if (message.text == 'help') {
-    let responses = 'Chatgpt';
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: responses});
-    });
+// Get the saved state from the storage and set the toggle checkbox and the summarize button accordingly
+chrome.storage.sync.get("enabled", function(data) {
+  if (data.enabled !== undefined) {
+    toggle.checked = data.enabled;
+    summarizeBtn.disabled = !data.enabled;
+  } else {
+    toggle.checked = true;
   }
-});
-
-
-    // Add a click event listener to the "Summarize" button
-document.getElementById('summarize').addEventListener('click', function() {
-      // Send a message to the content script to summarize the page
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    var activeTab = tabs[0];
-    chrome.tabs.sendMessage(activeTab.id, {text: 'summarize'});
-  });
 });
