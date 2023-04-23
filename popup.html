@@ -17,6 +17,15 @@
         padding: 10px;
         text-align: center;
         border-bottom: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo {
+        height: 30px;
+        width: 30px;
+        margin-right: 10px;
       }
       
       /* Add CSS styling to the button */
@@ -25,7 +34,7 @@
         border: none;
         color: white;
         padding: 10px;
-        text-align: center;
+        text-align: left;
         text-decoration: none;
         display: inline-block;
         font-size: 14px;
@@ -53,13 +62,17 @@
     </style>
   </head>
   <body>
-    <h1>In-a-nutshell</h1>
+    <h1>
+      <img class="logo" src="nutshell.png" alt="In-a-Nutshell logo">
+      In a Nutshell
+    </h1>
+    <p>Get quick summaries of any web page with In-a-Nutshell! Simply turn on the extension using the toggle below, and click the "Summarize the current tab" button to generate a summary of the currently active tab.</p>
     <label>
-      <input type="checkbox" id="toggle" unchecked>
-      Turn on/off In-a-Nutshell
+      <input type="checkbox" id="toggle" checked>
+      Use the Extention
     </label>
     <button id="summarize">Summarize the current tab</button>
-    
+    <p>Version 1.0</p>
     <script src="popup.js"></script>
   </body>
 </html>

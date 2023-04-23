@@ -6,11 +6,11 @@
   "permissions": ["activeTab", "storage"],
   "content_scripts":[
     {
-      "matches":[
-        "<all_urls>"
-      ],
+      "matches":["<all_urls>", "https://csufullerton.instructure.com/*"],
       "js": ["content.js"],
-      "all_frames": true
+      "run_at": "document_end",
+      "all_frames": true,
+      "match_about_blank": true
     }
   ],
   "background":{
@@ -18,8 +18,9 @@
   },
   "browser_action": {
     "default_icon": "nutshell.png",
-    "default_title": "in-a-nutshell",
+    "default_title": "In-a-Nutshell",
     "default_popup": "popup.html"
-  }
+  },
+  "web_accessible_resources": [".env"]
 }
 
