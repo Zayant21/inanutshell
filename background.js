@@ -1,6 +1,4 @@
-const dotenv = require('dotenv');
-dotenv.config(); // load environment variables from .env file
-const apiKey = process.env.API_KEY; // access API key from environment variable
+const API_KEY = ''
  
  chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.enabled === true) {
@@ -35,7 +33,7 @@ const apiKey = process.env.API_KEY; // access API key from environment variable
      };
       const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${current.env.API_KEY}`,
+        'Authorization': `Bearer ${API_KEY}`,
       };
   
       fetch(url, {

@@ -20,7 +20,6 @@
     "default_icon": "nutshell.png",
     "default_title": "In-a-Nutshell",
     "default_popup": "popup.html"
-  },
-  "web_accessible_resources": [".env"]
+  }
 }
 
