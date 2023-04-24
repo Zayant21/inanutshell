@@ -6,8 +6,8 @@
       /* Add CSS styling to the title */
       body {
       width: 250px;
-        height: 250px;
-        font-family: Arial, sans-serif;
+      height: 150px;
+      font-family: Arial, sans-serif;
       }
 
       h1 {
@@ -29,36 +29,35 @@
       }
       
       /* Add CSS styling to the button */
-      button {
-        background-color: #4CAF50;
+      #toggle-button {
+        background-color: #008CBA;
         border: none;
         color: white;
-        padding: 10px;
-        text-align: left;
+        padding: 10px 15px;
+        text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 14px;
+        font-size: 9px;
         margin: 10px;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 8%;
       }
-      
-      button:hover {
-        background-color: #3e8e41;
-      }
-
-      /* Add CSS styling to the checkbox */
-      label {
-        display: block;
+      #api-toggle{
+        background-color: #008CBA;
+        border: none;
+        color: white;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 9px;
         margin: 10px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #333;
+        cursor: pointer;
+        border-radius: 8%;
       }
 
-      input[type="checkbox"] {
-        margin-right: 10px;
-      }
+
+     
     </style>
   </head>
   <body>
@@ -66,13 +65,14 @@
       <img class="logo" src="nutshell.png" alt="In-a-Nutshell logo">
       In a Nutshell
     </h1>
-    <p>Get quick summaries of any web page with In-a-Nutshell! Simply turn on the extension using the toggle below, and click the "Summarize the current tab" button to generate a summary of the currently active tab.</p>
+    <p>"In a Nutshell" is a Chrome extension uses the ChatGPT to provide assistance inside Webpages. It consist of several commands that can be used to get uniques responses from the ChatGPT model.</p>
     <label>
-      <input type="checkbox" id="toggle" checked>
-      Use the Extention
+      Extention:<button id="api-toggle">Toggle</button>
+      Mode:<button id="toggle-button">Toggle</button>     
     </label>
-    <button id="summarize">Summarize the current tab</button>
-    <p>Version 1.0</p>
-    <script src="popup.js"></script>
+    <!-- -->
+    <script src="popuptoggle.js"></script>
   </body>
+  <br><br> Version 1.0.0 <a href="https://github.com/Zayant21/inanutshell" target="_blank">GitHub</a>
+  <br><a href="https://github.com/Zayant21/inanutshell/issues" target="_blank">Report an Issue</a>
 </html>

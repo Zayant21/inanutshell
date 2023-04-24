@@ -1,78 +1,156 @@
-const API_KEY = ''
- 
- chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  if (request.enabled === true) {
-//   chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-//     if (changeInfo.status == 'complete') {
-//       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//         var activeTab = tabs[0];
-//         if (activeTab && activeTab.url && activeTab.url.indexOf('http') == 0) {
-//           chrome.tabs.executeScript(null, {file: 'content.js'}, function() {
-//             chrome.tabs.sendMessage(activeTab.id, {text: 'get_content'}, function(response) {
-//               if (response) {
-//                 console.log(response)
-//               }
-//             });
-//           });
-//         }
-//       });
-//     }
-//   });
+const API_KEY = ``;
+
+let toggleextention = true;
+
+chrome.storage.sync.get("toggleextention", function (data) {
+  if (data.toggleextention != undefined) {
+    toggleextention = data.toggleextention;
+    updateContent();
+  }
+});
+function updateContent() {
+  if (toggleextention) {
 
   chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    console.log(message.command)
-    if (message.text == 'help_s') {
+    if (message.text == 'ns') {
       const command = message.command;
       const url = 'https://api.openai.com/v1/chat/completions';
       const GPTresponse = {
         'model': 'gpt-3.5-turbo',
         'messages': [{'role': 'user', 'content': `${command} `}],
-       'max_tokens': 50,
+       'max_tokens': 400,
        'temperature': 0.2,
        'stop': null
      };
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${API_KEY}`,
-      };
-  
-      fetch(url, {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(GPTresponse)
-      })
-      .then(response => response.json())
-      .then(GPTresponse => {
-        const text = GPTresponse.choices[0].message.content.trim();
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-          chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: text});
-        });
-      })
-      .catch(error => console.log(error));
-
-    }
-    else if (message.text == 'help') {
-      const command = message.command;
-      let responses = `An explanation of ${command}`;
+     const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${API_KEY}`
+    };
+     fetch(url, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(GPTresponse)
+    })
+    .then(response => response.json())
+    .then(GPTresponse => {
+      const text = GPTresponse.choices[0].message.content.trim();
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: responses});
+        chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: text});
       });
+    })
+    .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: 'Response Error: Try again with a different webpage or prompt lenght;'});
+    }) );
     }
+
+     if (message.text == 'ns_s') {
+      const command = message.command;
+      const url = 'https://api.openai.com/v1/chat/completions';
+      const GPTresponse = {
+        'model': 'gpt-3.5-turbo',
+        'messages': [{'role': 'user', 'content': `${command} `}],
+       'max_tokens': 100,
+       'temperature': 0.2,
+       'stop': null
+     };
+     const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${API_KEY}`
+    };
+     fetch(url, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(GPTresponse)
+    })
+    .then(response => response.json())
+    .then(GPTresponse => {
+      const text = GPTresponse.choices[0].message.content.trim();
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: text});
+      });
+    })
+    .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: 'Response Error: Try again with a different webpage or prompt lenght;'});
+    }) );
+    }
+
+     if (message.text == 'ns_lc') {
+      const command = message.command;
+      const webContent = message.rawData;
+      console.log(command)
+      console.log(webContent)
+                const url = 'https://api.openai.com/v1/chat/completions';
+                const GPTresponse = {
+                  'model': 'gpt-3.5-turbo',
+                  'messages': [{'role': 'user', 'content': `given this content: ${webContent}, Answer:${command} `}],
+                'max_tokens': 4096,
+                'temperature': 0.2,
+                'stop': null
+                };
+                const headers = {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${API_KEY}`
+                };
+                fetch(url, {
+                  method: 'POST',
+                  headers: headers,
+                  body: JSON.stringify(GPTresponse)
+                })
+                .then(response => response.json())
+                .then(GPTresponse => {
+                  const text = GPTresponse.choices[0].message.content.trim();
+                  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: text});
+                  });
+                })
+                .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                  chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: 'Response Error: Try again with a different webpage or prompt lenght;'});
+                }) );
+
+    }
+
+     if (message.text == 'ns_sum') {
+      const webContent = message.rawData;
+                const url = 'https://api.openai.com/v1/chat/completions';
+                const GPTresponse = {
+                  'model': 'gpt-3.5-turbo',
+                  'messages': [{'role': 'user', 'content': `summarize the webpage with following content: ${webContent} `}],
+                'max_tokens': 500,
+                'temperature': 0.2,
+                'stop': null
+                };
+                const headers = {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${API_KEY}`
+                };
+                fetch(url, {
+                  method: 'POST',
+                  headers: headers,
+                  body: JSON.stringify(GPTresponse)
+                })
+                .then(response => response.json())
+                .then(GPTresponse => {
+                  const text = GPTresponse.choices[0].message.content.trim();
+                  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: text});
+                  });
+                })
+                .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                  chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: 'Response Error: Try again with a different webpage or prompt lenght;'});
+                }) );
+    }
+  
   });
+} else {
+  console.log("extention is off !!")
+}
+}
 
-
-      // Add a click event listener to the "Summarize" button
-  // document.getElementById('summarize').addEventListener('click', function() {
-  //       // Send a message to the content script to summarize the page
-  //   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  //     var activeTab = tabs[0];
-  //     chrome.tabs.sendMessage(activeTab.id, {text: 'summarize'});
-  //   });
-  // });
-   }
-
- else {
-   console.log("Toggle is off")
- }
-
- });
+chrome.storage.onChanged.addListener(function (changes, namespace) {
+  for (let key in changes) {
+    if (key === "toggleextention") {
+      toggleextention = changes[key].newValue;
+      updateContent();
+    }
+  }
+});
