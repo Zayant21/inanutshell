@@ -5,7 +5,7 @@
 
 
 
-![logo](https://www.simpleimageresizer.com/_uploads/photos/8cc9d2dc/nutshell_3_100x125.png)
+![logo](https://github.com/Zayant21/inanutshell/blob/master/nutshell.png?raw=true)
 # In a Nutshell
 
 "In a Nutshell" is a Chrome extension uses the ChatGPT to provide assistance inside webpages. It provides several commands that can be used to get responses from the ChatGPT model.
