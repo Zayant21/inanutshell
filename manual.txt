@@ -1,5 +1,5 @@
 NAME
-    in-a-nutshell - Chrome extension that uses ChatGPT to provide assistance inside webpages
+    in-a-nutshell - Chrome extension that uses ChatGPT to provide assistance inside Webpages
 
 SYNOPSIS
     $nutshell 'user prompt';
