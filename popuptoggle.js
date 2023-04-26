@@ -12,11 +12,11 @@ chrome.storage.sync.get("toggleState", function (data) {
 function updateButton_() {
   const button = document.getElementById("toggle-button");
   if (toggleState) {
-    button.textContent = "Input";
-    button.style.backgroundColor = "#50C878";
-  } else {
     button.textContent = "iFrame";
     button.style.backgroundColor = "#00A6F8";
+  } else {
+    button.textContent = "input";
+    button.style.backgroundColor = "#50C878";
   }
 }
 

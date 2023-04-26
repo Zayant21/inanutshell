@@ -1,36 +1,36 @@
 NAME
-    in-a-nutshell - Chrome extension that uses ChatGPT to provide assistance inside webpages
+    In-a-Nutshell - Chrome extension that uses ChatGPT to provide assistance inside webpages
 
 SYNOPSIS
-    $nutshell 'user prompt';
-    $nutshell -s 'user prompt';
-    $nutshell -lc 'user prompt';
-    $nutshell -sum;
-    $nutshell -v;
+    $nshell 'user prompt';
+    $nshell -s 'user prompt';
+    $nshell -lc 'user prompt';
+    $nshell -sum;
+    $nshell -v;
 
 DESCRIPTION
     The "In a Nutshell" Chrome extension provides several commands that can be used to get responses from the ChatGPT model. These commands are described below:
     
-    $nutshell 'user prompt'
+    $nshell 'user prompt'
         Returns a response message consisting of 0-400 tokens. The prompt is the user text.
 
-    $nutshell -s 'user prompt'
+    $nshell -s 'user prompt'
         Returns a brief response message consisting of 0-100 tokens. The prompt is the user text.
 
-    $nutshell -lc 'user prompt'
+    $nshell -lc 'user prompt'
         Returns a response message consisting of 0-4096 tokens. The prompt is the webpage context + user text.
 
-    $nutshell -sum
+    $nshell -sum
         Returns a summarized response message consisting of 0-500 tokens. The prompt is the webpage context.
 
-    $nutshell -v
+    $nshell -v
         Returns the version of the "In a Nutshell" extension.
 
     Note that the response messages may vary in length and quality depending on the complexity and specificity of the prompt. The -lc command can provide more accurate and informative responses by including the webpage context in the prompt, while the -sum command can provide a shorter and more digestible summary of the current webpage.
 
 
 REPORTING BUGS
-    If you encounter any issues with the "In a Nutshell" extension, please report them to the project's GitHub page: https://github.com/Zayant21/inanutshell/issues
+    If you encounter any issues with the "In a Nutshell" extension, please report them to the this email: zayantofeeq21@icloud.com
 
 COPYRIGHT
     This program is licensed under the MIT License. See the LICENSE file for details.
