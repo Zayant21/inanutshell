@@ -37,7 +37,7 @@
 ## Features
 In **```Input```** Tag, the extension is able to work with native DOM elements within the current webpage. This means that the extension can access and manipulate the content of the webpage in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the webpage.
 
-in **```iframe```** Tag, the extension is able to work with embedded documents that have different URL sources from the current webpage. This means that the extension can access and manipulate the content of the embedded documents in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the embedded document.
+In **```iframe```** Tag, the extension is able to work with embedded documents that have different URL sources from the current webpage. This means that the extension can access and manipulate the content of the embedded documents in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the embedded document.
 
 ## Environment Variables
 
