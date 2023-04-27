@@ -12,28 +12,28 @@
 
 ## Usage
 
-**```$man nshell;```**: Displays the manual for the "In a Nutshell" extension commands.
+**```::man ns;```**: Displays the manual for the "In a Nutshell" extension commands.
 
-**```$nshell 'user prompt';```**: Returns a response message consisting of 0-400 tokens. The prompt is the user text.
+**```::ns 'user prompt';```**: Returns a response message consisting of 0-400 tokens. The prompt is the user text.
 
-**```$nshell -s 'user prompt';```**: Returns a brief response message consisting of 0-100 tokens. The prompt is the user text.
+**```::ns -s 'user prompt';```**: Returns a brief response message consisting of 0-100 tokens. The prompt is the user text.
 
-**```$nshell -lc 'user prompt';```**: Returns a response message consisting of 0-4096 tokens. The prompt is the webpage context + user text.
+**```::ns -lc 'user prompt';```**: Returns a response message consisting of 0-4096 tokens. The prompt is the webpage context + user text.
 
-**```$nshell -sum;```**: Returns a summarized response message consisting of 0-500 tokens. The prompt is the webpage context.
+**```::ns -sum;```**: Returns a summarized response message consisting of 0-500 tokens. The prompt is the webpage context.
 
-**```$nshell -v;```**: Returns the version of the "In a Nutshell" extension.
+**```::ns -v;```**: Returns the version of the "In a Nutshell" extension.
 
 ## Examples
-```$nshell What is the capital of France?;```: Returns a response message with information about Paris.
+```::ns What is the capital of France?;```: Returns a response message with information about Paris.
 
-```$nshell -s What is the meaning of life?;```: Returns a brief response message with a philosophical answer.
+```::ns -s What is the meaning of life?;```: Returns a brief response message with a philosophical answer.
 
-```$nshell -lc https://en.wikipedia.org/wiki/Artificial_intelligence What is AI?;```: Returns a response message with information about AI, using the context of the provided webpage.
+```::ns -lc https://en.wikipedia.org/wiki/Artificial_intelligence What is AI?;```: Returns a response message with information about AI, using the context of the provided webpage.
 
-```$nshell -sum;```: Returns a summarized response message about the current webpage.
+```::ns -sum;```: Returns a summarized response message about the current webpage.
 
-```$nshell -v;```: Returns the current version of the "In a Nutshell" extension.
+```::ns -v;```: Returns the current version of the "In a Nutshell" extension.
 ## Features
 In **```Input```** Tag, the extension is able to work with native DOM elements within the current webpage. This means that the extension can access and manipulate the content of the webpage in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the webpage.
 

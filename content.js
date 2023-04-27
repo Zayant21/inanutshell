@@ -1,21 +1,21 @@
 
-const man_nutshell = /^\$man nshell;$/;
-const nutshell = /\$nshell\s+([^;-]+)\s*;/;
-const nutshell_s = /\$nshell\s+-s\s+([^;]+)\s*;/;
-const nutshell_lc = /^\$nshell\s+-lc\s+([^;]+);\s*$/ ;
-const nutshell_sum = /^\$nshell\s+-sum;\s*$/;
-const nutshell_version = /^\$nshell\s+-v;\s*$/;
+const man_nutshell = /^\::man ns;$/;
+const nutshell = /\::ns\s+([^;-]+)\s*;/;
+const nutshell_s = /\::ns\s+-s\s+([^;]+)\s*;/;
+const nutshell_lc = /^\::ns\s+-lc\s+([^;]+);\s*$/ ;
+const nutshell_sum = /^\::ns\s+-sum;\s*$/;
+const nutshell_version = /^\::ns\s+-v;\s*$/;
 
-const currentversion = 'v1.0.0'
+const currentversion = 'v 1.0.0'
 const man = 
 `NAME 
 in-a-nutshell - Chrome extension that uses ChatGPT to provide assistance inside webpages
 SYNOPSIS
-$nshell 'user prompt';
-$nshell -s 'user prompt';
-$nshell -lc 'user prompt';
-$nshell -sum;
-$nshell -v;`;
+::ns 'user prompt';
+::ns -s 'user prompt';
+::ns -lc 'user prompt';
+::ns -sum;
+::ns -v;`;
 
 let toggleState = true;
 
@@ -33,7 +33,7 @@ function updateContent() {
 
 document.addEventListener("input", function(event) {
   
-  if (event.target.textContent.startsWith('$nshell')){
+  if (event.target.textContent.startsWith('::ns')){
     const match = event.target.textContent.match(nutshell);
     if (match) {
       const command = match[1].trim();
@@ -43,11 +43,11 @@ document.addEventListener("input", function(event) {
       });
     }
     else {
-      console.error('invalid $nshell command');
+      console.error('invalid ::ns command');
     }
   }
 
-  if (event.target.textContent.startsWith('$nshell -')) {
+  if (event.target.textContent.startsWith('::ns -')) {
     const match_s = event.target.textContent.match(nutshell_s);
     const match_lc = event.target.textContent.match(nutshell_lc);
     const match_sum = event.target.textContent.match(nutshell_sum);
@@ -109,7 +109,7 @@ document.addEventListener("input", function(event) {
     
 
     else {
-      console.error('invalid $nshell -command');
+      console.error('invalid ::ns -command');
     }
   }
   if (event.target.textContent.startsWith('$man nshell;')){
@@ -130,7 +130,7 @@ document.addEventListener("input", function(event) {
 } else {
     document.addEventListener("input", function(event) {
   
-      if (event.target.value.startsWith('$nshell')){
+      if (event.target.value.startsWith('::ns')){
         const match = event.target.value.match(nutshell);
         if (match) {
           const command = match[1].trim();
@@ -140,11 +140,11 @@ document.addEventListener("input", function(event) {
           });
         }
         else {
-          console.error('invalid $nshell command');
+          console.error('invalid ::ns command');
         }
       }
     
-      if (event.target.value.startsWith('$nshell -')) {
+      if (event.target.value.startsWith('::ns -')) {
         const match_s = event.target.value.match(nutshell_s);
         const match_lc = event.target.value.match(nutshell_lc);
         const match_sum = event.target.value.match(nutshell_sum);
@@ -206,7 +206,7 @@ document.addEventListener("input", function(event) {
         
     
         else {
-          console.error('invalid $nshell -command');
+          console.error('invalid ::ns -command');
         }
       }
       if (event.target.value.startsWith('$man nshell;')){

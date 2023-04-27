@@ -2,28 +2,28 @@ NAME
     In-a-Nutshell - Chrome extension that uses ChatGPT to provide assistance inside Webpages
 
 SYNOPSIS
-    $nshell 'user prompt';
-    $nshell -s 'user prompt';
-    $nshell -lc 'user prompt';
-    $nshell -sum;
-    $nshell -v;
+    ::ns 'user prompt';
+    ::ns -s 'user prompt';
+    ::ns -lc 'user prompt';
+    ::ns -sum;
+    ::ns -v;
 
 DESCRIPTION
     The "In a Nutshell" Chrome extension provides several commands that can be used to get responses from the ChatGPT model. These commands are described below:
     
-    $nshell 'user prompt'
+    ::ns 'user prompt'
         Returns a response message consisting of 0-400 tokens. The prompt is the user text.
 
-    $nshell -s 'user prompt'
+    ::ns -s 'user prompt'
         Returns a brief response message consisting of 0-100 tokens. The prompt is the user text.
 
-    $nshell -lc 'user prompt'
+    ::ns -lc 'user prompt'
         Returns a response message consisting of 0-4096 tokens. The prompt is the webpage context + user text.
 
-    $nshell -sum
+    ::ns -sum
         Returns a summarized response message consisting of 0-500 tokens. The prompt is the webpage context.
 
-    $nshell -v
+    ::ns -v
         Returns the version of the "In a Nutshell" extension.
 
     Note that the response messages may vary in length and quality depending on the complexity and specificity of the prompt. The -lc command can provide more accurate and informative responses by including the webpage context in the prompt, while the -sum command can provide a shorter and more digestible summary of the current webpage.

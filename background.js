@@ -1,4 +1,4 @@
-const API_KEY = ``;
+const API_KEY = `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`;
 
 let toggleextention = true;
 
