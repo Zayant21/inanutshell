@@ -11,19 +11,19 @@ SYNOPSIS
 DESCRIPTION
     The "In a Nutshell" Chrome extension provides several commands that can be used to get responses from the ChatGPT model. These commands are described below:
     
-    ::ns 'user prompt'
-        Returns a response message consisting of 0-400 tokens. The prompt is the user text.
+    ::ns 'user prompt';
+        Returns a response message to user promt. The prompt is the user text with the cap limit of 1000 words.
 
-    ::ns -s 'user prompt'
-        Returns a brief response message consisting of 0-100 tokens. The prompt is the user text.
+    ::ns -s 'user prompt';
+       Returns a brief response message to user promt. The prompt is the user text with the cap limit of 75 words.
 
-    ::ns -lc 'user prompt'
-        Returns a response message consisting of 0-4096 tokens. The prompt is the webpage context + user text.
+    ::ns -lc 'user prompt';
+        Returns a response message to user prompt based on webpage context. The prompt is the user text with the cap limit of 75 words.
 
-    ::ns -sum
-        Returns a summarized response message consisting of 0-500 tokens. The prompt is the webpage context.
+    ::ns -sum;
+       Returns a summarized response message of webpage context. The prompt is the webpage context which is limited to 1000 words.
 
-    ::ns -v
+    ::ns -v;
         Returns the version of the "In a Nutshell" extension.
 
     Note that the response messages may vary in length and quality depending on the complexity and specificity of the prompt. The -lc command can provide more accurate and informative responses by including the webpage context in the prompt, while the -sum command can provide a shorter and more digestible summary of the current webpage.

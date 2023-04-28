@@ -14,13 +14,13 @@
 
 **```::man ns;```**: Displays the manual for the "In a Nutshell" extension commands.
 
-**```::ns 'user prompt';```**: Returns a response message consisting of 0-400 tokens. The prompt is the user text.
+**```::ns 'user prompt';```**: Returns a response message to user promt. The prompt is the user text with the cap limit of 1000 words.
 
-**```::ns -s 'user prompt';```**: Returns a brief response message consisting of 0-100 tokens. The prompt is the user text.
+**```::ns -s 'user prompt';```**: Returns a brief response message to user promt. The prompt is the user text with the cap limit of 75 words.
 
-**```::ns -lc 'user prompt';```**: Returns a response message consisting of 0-4096 tokens. The prompt is the webpage context + user text.
+**```::ns -lc 'user prompt';```**: Returns a response message to user prompt based on webpage context. The prompt is the user text with the cap limit of 75 words.
 
-**```::ns -sum;```**: Returns a summarized response message consisting of 0-500 tokens. The prompt is the webpage context.
+**```::ns -sum;```**: Returns a summarized response message of webpage context. The prompt is the webpage context which is limited to 1000 words.
 
 **```::ns -v;```**: Returns the version of the "In a Nutshell" extension.
 
@@ -35,9 +35,11 @@
 
 ```::ns -v;```: Returns the current version of the "In a Nutshell" extension.
 ## Features
-In **```Input```** Tag, the extension is able to work with native DOM elements within the current webpage. This means that the extension can access and manipulate the content of the webpage in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the webpage.
+In **```Input```** mode, the extension is able to work with native DOM elements within the current webpage. This means that the extension can access and manipulate the content of the webpage in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the webpage.
 
-In **```iframe```** Tag, the extension is able to work with embedded documents that have different URL sources from the current webpage. This means that the extension can access and manipulate the content of the embedded documents in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the embedded document.
+In **```iframe```** mode, the extension is able to work with embedded documents that have different URL sources from the current webpage. This means that the extension can access and manipulate the content of the embedded documents in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the embedded document.
+
+**``` command recoganitaion/parsing```** works with all commands, which allow the commands to execute irrespetive of text before or after as long as the prompt syntax matches the command syntax. The resulting reponse will replace the command prompt without harming the text outside of the prompt. 
 
 ## Environment Variables
 

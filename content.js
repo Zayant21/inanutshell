@@ -1,10 +1,17 @@
 
-const man_nutshell = /^\::man ns;$/;
-const nutshell = /\::ns\s+([^;-]+)\s*;/;
-const nutshell_s = /\::ns\s+-s\s+([^;]+)\s*;/;
-const nutshell_lc = /^\::ns\s+-lc\s+([^;]+);\s*$/ ;
-const nutshell_sum = /^\::ns\s+-sum;\s*$/;
-const nutshell_version = /^\::ns\s+-v;\s*$/;
+//const man_nutshell = /.*::man ns;.*/;
+const nutshell = /.*::ns\s+([^;-]+)\s*;.*/;
+const nutshell_s = /.*::ns\s+-s\s+([^;]+)\s*;.*/;
+const nutshell_lc = /.*::ns\s+-lc\s+([^;]+);\s*.*/;
+const nutshell_sum = /.*\s*::ns\s+-sum;\s*.*/;
+const nutshell_version = /::ns\s+-v;/;
+
+const man_nutshell_match = /::man ns;/;
+const nutshell_match = /\::ns\s+([^;-]+)\s*;/;
+const nutshell_s_match = /\::ns\s+-s\s+([^;]+)\s*;/;
+const nutshell_lc_match = /\::ns\s+-lc\s+([^;]+)\s*;/;
+const nutshell_sum_match = /::ns\s+-sum;/;
+const nutshell_version_match = /::ns\s+-v;/;
 
 const currentversion = 'v 1.0.0'
 const man = 
@@ -33,7 +40,7 @@ function updateContent() {
 
 document.addEventListener("input", function(event) {
   
-  if (event.target.textContent.startsWith('::ns')){
+  if (event.target.textContent.includes('::ns')){
     const match = event.target.textContent.match(nutshell);
     if (match) {
       const command = match[1].trim();
@@ -47,7 +54,7 @@ document.addEventListener("input", function(event) {
     }
   }
 
-  if (event.target.textContent.startsWith('::ns -')) {
+  if (event.target.textContent.includes('::ns -')) {
     const match_s = event.target.textContent.match(nutshell_s);
     const match_lc = event.target.textContent.match(nutshell_lc);
     const match_sum = event.target.textContent.match(nutshell_sum);
@@ -63,15 +70,18 @@ document.addEventListener("input", function(event) {
 
     if (match_lc) {
       const command = match_lc[1].trim();
-      console.log(`Command: ${command}`);
-      var headings = document.querySelectorAll('h1');
+      var title = document.querySelectorAll('title');
+      var headings = document.querySelectorAll('h1')||document.querySelectorAll('h2');
       var paragraphs = document.querySelectorAll('p');
       var rawData = "";
+      for (var i = 0; i < title.length; i++) {
+        rawData += `Title: ${title[i].innerText}`;
+        }
       for (var i = 0; i < headings.length; i++) {
-      rawData += headings[i].textContent;
+      rawData += `Heading: ${headings[i].innerText}`;
       }
-      for (var j = 0; j < paragraphs.length; j++) {
-      rawData += paragraphs[j].textContent ;
+      for (var i = 0; i < paragraphs.length; i++) {
+      rawData += paragraphs[i].innerText ;
       }
       if (rawData){
       const combined = `${command} ${rawData}`.replace(new RegExp(`(${command}|${rawData})`, 'gi'), '').trim();
@@ -79,41 +89,52 @@ document.addEventListener("input", function(event) {
       });
     }
     else{
-      console.error('Cant find any content data!')
+      var errorstr= 'Cant find any useful content on the website!';
+      console.error(errorstr)
+      const textContent = document.activeElement.textContent.replace(nutshell_lc_match, errorstr);
+      document.activeElement.textContent = textContent;
     }
     }
 
     if (match_sum) {
-      console.log(`Command: -sum`);
-      var headings = document.querySelectorAll('h1');
+      console.log(`Command is sum`);
+      var title = document.querySelectorAll('title');
+      var headings = document.querySelectorAll('h1')||document.querySelectorAll('h2');
       var paragraphs = document.querySelectorAll('p');
       var rawData = "";
+      for (var i = 0; i < title.length; i++) {
+        rawData += `Title: ${title[i].innerText}`;
+        }
       for (var i = 0; i < headings.length; i++) {
-      rawData += headings[i].textContent;
+      rawData += `Heading: ${headings[i].innerText}`;
       }
-      for (var j = 0; j < paragraphs.length; j++) {
-      rawData += paragraphs[j].textContent ;
+      for (var i = 0; i < paragraphs.length; i++) {
+      rawData += paragraphs[i].innerText ;
       }
       if (rawData){
       chrome.runtime.sendMessage({text: 'ns_sum', rawData: rawData}, function(response) {
       });
     }
     else{
-      console.error('Cant find any content data!')
+      var errorstr= 'Cant find any useful content on the website!';
+      console.error(errorstr)
+      const textContent = document.activeElement.textContent.replace(nutshell_sum_match, errorstr);
+      document.activeElement.textContent = textContent;
     }
     }
 
     if (match_version) {
-      document.activeElement.textContent = currentversion;
+      const textContent = document.activeElement.textContent.replace(nutshell_version_match, currentversion);
+      document.activeElement.textContent = textContent;
       }
-    
-
+      
     else {
       console.error('invalid ::ns -command');
     }
   }
-  if (event.target.textContent.startsWith('$man nshell;')){
-    document.activeElement.textContent = man;
+  if (event.target.textContent.includes('::man ns;')){
+    const textContent = document.activeElement.textContent.replace(man_nutshell_match, man);
+    document.activeElement.textContent = textContent;
   }
   
   else {
@@ -124,13 +145,17 @@ document.addEventListener("input", function(event) {
 
   chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     if (message.text == 'update_input') {
-      document.activeElement.textContent = message.value;
+      console.log( document.activeElement.textContent)
+      const textContent = document.activeElement.textContent.replace(nutshell_match, message.value).replace(nutshell_s_match, message.value)
+                                        .replace(nutshell_lc_match, message.value).replace(nutshell_sum_match, message.value);
+                                        console.log(textContent)
+      document.activeElement.textContent = textContent;
 }
 });
 } else {
     document.addEventListener("input", function(event) {
   
-      if (event.target.value.startsWith('::ns')){
+      if (event.target.value.includes('::ns')){
         const match = event.target.value.match(nutshell);
         if (match) {
           const command = match[1].trim();
@@ -144,7 +169,7 @@ document.addEventListener("input", function(event) {
         }
       }
     
-      if (event.target.value.startsWith('::ns -')) {
+      if (event.target.value.includes('::ns -')) {
         const match_s = event.target.value.match(nutshell_s);
         const match_lc = event.target.value.match(nutshell_lc);
         const match_sum = event.target.value.match(nutshell_sum);
@@ -161,14 +186,18 @@ document.addEventListener("input", function(event) {
         if (match_lc) {
           const command = match_lc[1].trim();
           console.log(`Command: ${command}`);
-          var headings = document.querySelectorAll('h1');
+          var title = document.querySelectorAll('title');
+          var headings = document.querySelectorAll('h1')||document.querySelectorAll('h2');
           var paragraphs = document.querySelectorAll('p');
           var rawData = "";
+          for (var i = 0; i < title.length; i++) {
+            rawData += `Title: ${title[i].innerText}`;
+            }
           for (var i = 0; i < headings.length; i++) {
-          rawData += headings[i].value;
+          rawData += `Heading: ${headings[i].innerText}`;
           }
-          for (var j = 0; j < paragraphs.length; j++) {
-          rawData += paragraphs[j].value ;
+          for (var i = 0; i < paragraphs.length; i++) {
+          rawData += paragraphs[i].innerText ;
           }
           if (rawData){
           const combined = `${command} ${rawData}`.replace(new RegExp(`(${command}|${rawData})`, 'gi'), '').trim();
@@ -176,41 +205,51 @@ document.addEventListener("input", function(event) {
           });
         }
         else{
-          console.error('Cant find any content data!')
+          var errorstr= 'Cant find any useful content on the website!';
+          console.error(errorstr)
+          const value = document.activeElement.value.replace(nutshell_lc_match, errorstr);
+          document.activeElement.value = value;
         }
         }
     
         if (match_sum) {
-          console.log(`Command: -sum`);
-          var headings = document.querySelectorAll('h1');
+          console.log(`Command is sum`);
+          var title = document.querySelectorAll('title');
+          var headings = document.querySelectorAll('h1')||document.querySelectorAll('h2');
           var paragraphs = document.querySelectorAll('p');
           var rawData = "";
+          for (var i = 0; i < title.length; i++) {
+            rawData += `Title: ${title[i].innerText}`;
+            }
           for (var i = 0; i < headings.length; i++) {
-          rawData += headings[i].value;
+          rawData += `Heading: ${headings[i].innerText}`;
           }
-          for (var j = 0; j < paragraphs.length; j++) {
-          rawData += paragraphs[j].value ;
+          for (var i = 0; i < paragraphs.length; i++) {
+          rawData += paragraphs[i].innerText ;
           }
-          if (rawData){
+        if(rawData){
           chrome.runtime.sendMessage({text: 'ns_sum', rawData: rawData}, function(response) {
           });
         }
         else{
-          console.error('Cant find any content data!')
+          var errorstr = 'Cant find any useful content on the website!';
+          const value = document.activeElement.value.replace(nutshell_sum_match, errorstr);
+          document.activeElement.value = value;
         }
         }
     
         if (match_version) {
-          document.activeElement.value = currentversion;
+          const value = document.activeElement.value.replace(nutshell_version_match, currentversion);
+          document.activeElement.value = value;
           }
         
-    
         else {
           console.error('invalid ::ns -command');
         }
       }
-      if (event.target.value.startsWith('$man nshell;')){
-        document.activeElement.value = man;
+      if (event.target.value.includes('::man ns;')){
+        const value = document.activeElement.value.replace(man_nutshell_match, man);
+        document.activeElement.value = value;
       }
       
       else {
@@ -221,7 +260,9 @@ document.addEventListener("input", function(event) {
     
     chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
       if (message.text == 'update_input') {
-        document.activeElement.value = message.value;
+        const value = document.activeElement.value.replace(nutshell_match, message.value).replace(nutshell_s_match, message.value)
+                                          .replace(nutshell_lc_match, message.value).replace(nutshell_sum_match, message.value);
+        document.activeElement.value = value;
   }
   });
   

@@ -1,4 +1,4 @@
-const API_KEY = ``;
+const API_KEY = `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`;
 
 let toggleextention = true;
 
@@ -18,8 +18,8 @@ function updateContent() {
       const GPTresponse = {
         'model': 'gpt-3.5-turbo',
         'messages': [{'role': 'user', 'content': `${command} `}],
-       'max_tokens': 400,
-       'temperature': 0.2,
+       'max_tokens': 1333,
+       'temperature': 0.5,
        'stop': null
      };
      const headers = {
@@ -39,7 +39,7 @@ function updateContent() {
       });
     })
     .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: 'Response Error: Try again with a different webpage or prompt lenght;'});
+      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: {error: error.message}});
     }) );
     }
 
@@ -48,9 +48,9 @@ function updateContent() {
       const url = 'https://api.openai.com/v1/chat/completions';
       const GPTresponse = {
         'model': 'gpt-3.5-turbo',
-        'messages': [{'role': 'user', 'content': `${command} `}],
+        'messages': [{'role': 'user', 'content': `Summarize Shortly: ${command} `}],
        'max_tokens': 100,
-       'temperature': 0.2,
+       'temperature': 0.5,
        'stop': null
      };
      const headers = {
@@ -70,7 +70,7 @@ function updateContent() {
       });
     })
     .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: 'Response Error: Try again with a different webpage or prompt lenght;'});
+      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: {error: error.message}});
     }) );
     }
 
@@ -83,8 +83,8 @@ function updateContent() {
                 const GPTresponse = {
                   'model': 'gpt-3.5-turbo',
                   'messages': [{'role': 'user', 'content': `given this content: ${webContent}, Answer:${command} `}],
-                'max_tokens': 4096,
-                'temperature': 0.2,
+                'max_tokens': 100,
+                'temperature': 0.5,
                 'stop': null
                 };
                 const headers = {
@@ -104,7 +104,7 @@ function updateContent() {
                   });
                 })
                 .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                  chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: 'Response Error: Try again with a different webpage or prompt lenght;'});
+                  chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: {error: error.message}});
                 }) );
 
     }
@@ -115,8 +115,8 @@ function updateContent() {
                 const GPTresponse = {
                   'model': 'gpt-3.5-turbo',
                   'messages': [{'role': 'user', 'content': `summarize the webpage with following content: ${webContent} `}],
-                'max_tokens': 500,
-                'temperature': 0.2,
+                'max_tokens': 1333,
+                'temperature': 0.5,
                 'stop': null
                 };
                 const headers = {
@@ -136,7 +136,7 @@ function updateContent() {
                   });
                 })
                 .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                  chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: 'Response Error: Try again with a different webpage or prompt lenght;'});
+                  chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: {error: error.message}});
                 }) );
     }
   
