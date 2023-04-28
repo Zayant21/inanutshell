@@ -35,17 +35,17 @@
 
 ```::ns -v;```: Returns the current version of the "In a Nutshell" extension.
 ## Features
-In **```Input```** mode, the extension is able to work with native DOM elements within the current webpage. This means that the extension can access and manipulate the content of the webpage in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the webpage.
+ In **```Input```** mode, the extension is able to work with native DOM elements within the current webpage. This means that the extension can access and manipulate the content of the webpage in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the webpage.
 
-In **```iframe```** mode, the extension is able to work with embedded documents that have different URL sources from the current webpage. This means that the extension can access and manipulate the content of the embedded documents in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the embedded document.
+ In **```iframe```** mode, the extension is able to work with embedded documents that have different URL sources from the current webpage. This means that the extension can access and manipulate the content of the embedded documents in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the embedded document.
 
-**``` command recoganitaion/parsing```** works with all commands, which allow the commands to execute irrespetive of text before or after as long as the prompt syntax matches the command syntax. The resulting reponse will replace the command prompt without harming the text outside of the prompt.
+ **``` command recoganitaion/parsing```** works with all commands, which allow the commands to execute irrespetive of text before or after as long as the prompt syntax matches the command syntax. The resulting reponse will replace the command prompt without harming the text outside of the prompt.
 
 ```for example```
 
 **``` 'any text ::ns 'user prompt'; any text'```** will result **```any text `response message` any text```**
 
-**``` '::ns 'user prompt'; any text'```** will result **````response message` any text```**
+**``` '::ns 'user prompt'; any text'```** will result **``` `response message` any text```**
 
 ## Environment Variables
 
