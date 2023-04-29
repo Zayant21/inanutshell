@@ -47,9 +47,9 @@
 
 **``` '::ns 'user prompt'; any text'```** will result **``` `response message` any text```**
 
-## Environment Variables
+## Requirments
 
-To run this project, you will need to add the following environment variables to your .env file
+To run this project, you will need to add the following variables to your background.js file. To learn more about getting - [API_KEY](https://platform.openai.com/docs/api-reference/introduction)
 
 `API_KEY`
 
