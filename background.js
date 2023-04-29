@@ -39,7 +39,7 @@ function updateContent() {
       });
     })
     .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: {error: error.message}});
+      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: ' error: check background console logs for more details'});
     }) );
     }
 
@@ -70,7 +70,7 @@ function updateContent() {
       });
     })
     .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: {error: error.message}});
+      chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: ' error: check background console logs for more details'});
     }) );
     }
 
@@ -104,7 +104,7 @@ function updateContent() {
                   });
                 })
                 .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                  chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: {error: error.message}});
+                  chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: ' error: check background console logs for more details'});
                 }) );
 
     }
@@ -136,7 +136,7 @@ function updateContent() {
                   });
                 })
                 .catch(error => chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                  chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: {error: error.message}});
+                  chrome.tabs.sendMessage(tabs[0].id, {text: 'update_input', value: 'error: check background console logs for more details'});
                 }) );
     }
   
