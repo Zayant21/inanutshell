@@ -34,6 +34,11 @@
 ```::ns -sum;```: Returns a summarized response message about the current webpage.
 
 ```::ns -v;```: Returns the current version of the "In a Nutshell" extension.
+
+![example](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOThjNTRkZmQ5ZjQ0ZDAwNmYzOGM4NzdhMmU4MDU3NjczMmM2ZGU3ZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/TZWYaOxIMgS3rdeYuN/giphy.gif)
+![example](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTVhMmVkMGM5MGZhMTZhM2U5NGUxZjIxZDY2MWY2MDg0ZDU0ZTA2MiZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/TeEyWvTRAnVFeE2PJL/giphy.gif)
+
+
 ## Features
  In **```Input```** mode, the extension is able to work with native DOM elements within the current webpage. This means that the extension can access and manipulate the content of the webpage in real time. The user can enter a prompt and receive a response from the ChatGPT model based on the content of the webpage.
 
