@@ -35,7 +35,6 @@
 
 ```::ns -v;```: Returns the current version of the "In a Nutshell" extension.
 
-![example](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOThjNTRkZmQ5ZjQ0ZDAwNmYzOGM4NzdhMmU4MDU3NjczMmM2ZGU3ZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/TZWYaOxIMgS3rdeYuN/giphy.gif)
 ![example](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTVhMmVkMGM5MGZhMTZhM2U5NGUxZjIxZDY2MWY2MDg0ZDU0ZTA2MiZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/TeEyWvTRAnVFeE2PJL/giphy.gif)
 
 
