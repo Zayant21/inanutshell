@@ -14,7 +14,7 @@
 
 **```::man ns;```**: Displays the manual for the "In a Nutshell" extension commands.
 
-**```::ns 'user prompt';```**: Returns a response message to user promt. The prompt is the user text with the cap limit of 1000 words.
+**```::ns 'user prompt';```**: Returns a response message to user prompt. The prompt is the user text with the cap limit of 1000 words.
 
 **```::ns -s 'user prompt';```**: Returns a brief response message to user promt. The prompt is the user text with the cap limit of 75 words.
 
