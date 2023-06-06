@@ -61,4 +61,4 @@ To run this project, you will need to add the following variables to your backgr
 ## Author
 - [Zayan Tofeeq](https://www.github.com/Zayant21)
 ## 🚀 About Me
-I love to make cool stuff. wanna support me [click here](https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley) .
+I love to make cool stuff. wanna support me [click here](https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley).
