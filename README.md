@@ -55,7 +55,7 @@
 
 To run this project, you will need to add the following variables to your background.js file. To learn more about [API_KEY](https://platform.openai.com/docs/api-reference/introduction)
 
-`API_KEY`
+`API_KEY` 
 
 
 ## Author
